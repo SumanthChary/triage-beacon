@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle, Loader2, Circle, User, Heart, Activity } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import { Link } from "react-router-dom";
 
 const steps = [
   { label: "Extracting symptoms", duration: 1000 },
@@ -35,6 +36,24 @@ const AIProcessingPage = () => {
       <Navbar variant="app" />
 
       <div className="mx-auto max-w-4xl px-6 py-16">
+        <div className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-border bg-card p-3 shadow-card">
+          {[
+            { label: "Dashboard", to: "/dashboard" },
+            { label: "Type Input", to: "/triage/new" },
+            { label: "Voice Input", to: "/triage/voice" },
+            { label: "Results", to: "/triage/results" },
+            { label: "Priority", to: "/triage/priority" },
+          ].map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:border-primary/30 hover:text-foreground"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
         <p className="text-center text-sm text-muted-foreground mb-12">
           Analyzing patient data · usually under 3 seconds
         </p>
