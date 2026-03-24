@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle, Zap, Shield, ArrowRight, Clock, Handshake, Play } from "lucide-react";
+import { CheckCircle, Zap, Shield, ArrowRight, Clock, Handshake, Play, Activity } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import Navbar from "@/components/layout/Navbar";
 
