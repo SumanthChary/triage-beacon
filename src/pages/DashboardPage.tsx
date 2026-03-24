@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
-import { Search, Bell, CheckCircle, TrendingUp, BarChart3 } from "lucide-react";
+import { Search, CheckCircle, TrendingUp, BarChart3, Smartphone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type Priority = "HIGH" | "MEDIUM" | "LOW";
 
@@ -66,7 +67,15 @@ const DashboardPage = () => {
         <div className="flex gap-8">
           {/* Patient queue - left */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-display-sm text-foreground mb-6">Patient Queue</h1>
+            <div className="mb-6 flex items-center justify-between">
+              <h1 className="text-display-sm text-foreground">Patient Queue</h1>
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/triage/mobile">
+                  <Smartphone className="h-4 w-4" />
+                  Mobile quick-triage
+                </Link>
+              </Button>
+            </div>
 
             {/* Search */}
             <div className="relative mb-6">

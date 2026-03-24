@@ -5,10 +5,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LandingPage from "./pages/LandingPage";
 import SymptomInputPage from "./pages/SymptomInputPage";
+import VoiceInputPage from "./pages/VoiceInputPage";
 import AIProcessingPage from "./pages/AIProcessingPage";
 import ResultsPage from "./pages/ResultsPage";
 import PriorityPage from "./pages/PriorityPage";
 import DashboardPage from "./pages/DashboardPage";
+import MobileQuickTriagePage from "./pages/MobileQuickTriagePage";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,10 +24,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/triage/new" element={<SymptomInputPage />} />
+          <Route path="/triage/voice" element={<VoiceInputPage />} />
           <Route path="/triage/processing" element={<AIProcessingPage />} />
           <Route path="/triage/results" element={<ResultsPage />} />
           <Route path="/triage/priority" element={<PriorityPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/triage/mobile" element={<MobileQuickTriagePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
