@@ -171,6 +171,25 @@ const DashboardPage = () => {
 
       <main className="mx-auto flex max-w-[1440px] gap-10 px-8 py-10">
         <section className="w-[70%]">
+          <div className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-border bg-card p-3 shadow-card">
+            {[
+              { label: "Type Input", to: "/triage/new" },
+              { label: "Voice Input", to: "/triage/voice" },
+              { label: "AI Processing", to: "/triage/processing" },
+              { label: "Results", to: "/triage/results" },
+              { label: "Priority", to: "/triage/priority" },
+              { label: "Mobile", to: "/triage/mobile" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground transition hover:text-foreground hover:border-primary/30"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
           <div className="mb-8 flex items-end justify-between">
             <div>
               <span className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-primary">Live Admissions</span>

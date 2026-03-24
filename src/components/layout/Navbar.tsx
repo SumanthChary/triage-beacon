@@ -29,11 +29,14 @@ const Navbar = ({ variant = "landing" }: NavbarProps) => {
         </Link>
 
         {isApp ? (
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-5">
             <Link to="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Dashboard</Link>
-            <Link to="/triage/new" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Patients</Link>
-            <span className="text-sm font-medium text-muted-foreground">Analytics</span>
-            <span className="text-sm font-medium text-muted-foreground">Settings</span>
+            <Link to="/triage/new" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Type</Link>
+            <Link to="/triage/voice" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Voice</Link>
+            <Link to="/triage/processing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Processing</Link>
+            <Link to="/triage/results" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Results</Link>
+            <Link to="/triage/priority" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Priority</Link>
+            <Link to="/triage/mobile" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Mobile</Link>
             <div className="flex items-center gap-3 pl-4 border-l border-border">
               <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="text-xs font-semibold text-primary">DC</span>
