@@ -78,6 +78,16 @@ const pricingCards = [
   },
 ];
 
+const flowScreens = [
+  { title: "Symptom Input", route: "/triage/new", desc: "Step 1 · Text symptoms + vitals capture" },
+  { title: "Voice Input", route: "/triage/voice", desc: "Step 1 Alt · Live transcription + keywords" },
+  { title: "AI Processing", route: "/triage/processing", desc: "Step 2 · Explainable analysis in progress" },
+  { title: "Results Dashboard", route: "/triage/results", desc: "Step 3 · Risk card + top conditions" },
+  { title: "Priority Assignment", route: "/triage/priority", desc: "Doctor confirms LOW / MEDIUM / HIGH" },
+  { title: "Triage Queue", route: "/dashboard", desc: "Live queue table + overview cards" },
+  { title: "Mobile Quick Triage", route: "/triage/mobile", desc: "Fast phone workflow for floor staff" },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -228,6 +238,59 @@ const LandingPage = () => {
           ))}
         </div>
       </motion.section>
+
+      <section className="mx-auto max-w-7xl px-6 pt-14 pb-24">
+        <div className="mb-8 flex items-end justify-between gap-6">
+          <div>
+            <h2 className="text-display-sm text-foreground">Complete product flow</h2>
+            <p className="mt-2 text-body-lg text-muted-foreground">
+              Every screen is wired and clickable so stakeholders can review the full triage journey end-to-end.
+            </p>
+          </div>
+          <Button variant="hero" asChild>
+            <Link to="/triage/new">
+              Open full flow
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {flowScreens.map((screen, idx) => (
+            <motion.div
+              key={screen.route}
+              className="group rounded-2xl border border-border bg-card p-5 shadow-card transition-all hover:shadow-medium hover:-translate-y-0.5"
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <div className="mb-4 overflow-hidden rounded-xl border border-border bg-accent/50">
+                <div className="h-28 w-full bg-gradient-to-br from-white to-slate-100 p-3">
+                  <div className="h-2 w-20 rounded bg-primary/20 mb-2" />
+                  <div className="space-y-1.5">
+                    <div className="h-2 w-full rounded bg-slate-200" />
+                    <div className="h-2 w-4/5 rounded bg-slate-200" />
+                    <div className="h-2 w-3/5 rounded bg-slate-200" />
+                  </div>
+                  <div className="mt-3 inline-flex rounded-full bg-primary px-2.5 py-1 text-[10px] font-semibold text-white">
+                    Preview
+                  </div>
+                </div>
+              </div>
+              <p className="text-subheading text-foreground">{screen.title}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{screen.desc}</p>
+              <Button variant="ghost" asChild className="mt-3 h-auto px-0 text-primary hover:bg-transparent">
+                <Link to={screen.route}>
+                  View screen
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* How it works */}
       <section id="solutions" className="mx-auto max-w-7xl px-6 py-28">
