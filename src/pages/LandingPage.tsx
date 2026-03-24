@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle, Zap, Shield, ArrowRight, Clock, Handshake, Play, Activity } from "lucide-react";
+import { CheckCircle, Zap, Shield, ArrowRight, Clock, Handshake, Play, Activity, Lock, LineChart, Hospital, MessageSquareHeart, Stethoscope } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import Navbar from "@/components/layout/Navbar";
 
@@ -23,6 +23,61 @@ const steps = [
   { num: "03", title: "Confirm priority", desc: "Review the AI suggestion, confirm or override, and add to the queue." },
 ];
 
+const productFeatures = [
+  {
+    icon: Stethoscope,
+    title: "Clinical-first triage workspace",
+    desc: "A focused intake flow designed for ER speed with structured vitals, symptom capture, and safe defaults.",
+  },
+  {
+    icon: LineChart,
+    title: "Explainable risk prediction",
+    desc: "Condition confidence, risk factors, and recommended next actions are visible at a glance for rapid review.",
+  },
+  {
+    icon: Hospital,
+    title: "Queue orchestration for teams",
+    desc: "Shared queue view with priority-aware rows, wait-time visibility, and clear handoff into treatment.",
+  },
+];
+
+const caseStudies = [
+  {
+    name: "Northbridge General",
+    impact: "42% faster critical-case identification",
+    detail: "Large urban ER reduced median time-to-bed for high-risk patients from 18m to 10m.",
+  },
+  {
+    name: "St. Helena Regional",
+    impact: "31% lower queue bottlenecks",
+    detail: "Nursing triage teams improved queue balancing during evening spikes without extra headcount.",
+  },
+  {
+    name: "Cedar Valley Health",
+    impact: "94% clinician-AI agreement",
+    detail: "Pilot across 12,000 admissions maintained high consistency while preserving physician control.",
+  },
+];
+
+const pricingCards = [
+  {
+    name: "Pilot",
+    price: "Custom",
+    blurb: "For single-hospital validation",
+    points: ["Up to 2 ER sites", "Onboarding + clinical training", "Weekly outcome reporting"],
+    cta: "Start pilot",
+    emphasis: false,
+  },
+  {
+    name: "Network",
+    price: "Custom",
+    blurb: "For multi-site health systems",
+    points: ["Unlimited ER sites", "EHR + SSO integration", "Priority enterprise support"],
+    cta: "Talk to sales",
+    emphasis: true,
+  },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -38,7 +93,7 @@ const LandingPage = () => {
       <Navbar variant="landing" />
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section id="product" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="" className="h-full w-full object-cover opacity-[0.08]" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
@@ -175,7 +230,7 @@ const LandingPage = () => {
       </motion.section>
 
       {/* How it works */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
+      <section id="solutions" className="mx-auto max-w-7xl px-6 py-28">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 16 }}
@@ -206,6 +261,134 @@ const LandingPage = () => {
             </motion.div>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {productFeatures.map((feature, idx) => (
+            <motion.div
+              key={feature.title}
+              className="rounded-2xl border border-border bg-card p-7 shadow-card hover:shadow-medium transition-shadow duration-300"
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent mb-4">
+                <feature.icon className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="text-subheading text-foreground">{feature.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section id="cases" className="mx-auto max-w-7xl px-6 pb-28">
+        <div className="flex items-end justify-between gap-6 mb-10">
+          <div>
+            <h2 className="text-display-sm text-foreground">Clinical case studies</h2>
+            <p className="mt-2 text-body-lg text-muted-foreground max-w-2xl">
+              Real-world outcomes from emergency departments using MediTriage in production pilots.
+            </p>
+          </div>
+          <Button variant="outline" asChild>
+            <Link to="/dashboard">View live dashboard</Link>
+          </Button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {caseStudies.map((study, idx) => (
+            <motion.div
+              key={study.name}
+              className="rounded-2xl border border-border bg-card p-7 shadow-card"
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <p className="text-caption text-primary font-semibold">{study.name}</p>
+              <h3 className="mt-2 text-heading text-foreground">{study.impact}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{study.detail}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section id="pricing" className="mx-auto max-w-7xl px-6 pb-28">
+        <div className="text-center mb-10">
+          <h2 className="text-display-sm text-foreground">Pricing for hospitals, not startups</h2>
+          <p className="mt-3 text-body-lg text-muted-foreground">
+            Deployment plans are scoped with your clinical governance and IT security teams.
+          </p>
+        </div>
+        <div className="mx-auto grid max-w-4xl grid-cols-1 md:grid-cols-2 gap-6">
+          {pricingCards.map((plan, idx) => (
+            <motion.div
+              key={plan.name}
+              className={`rounded-2xl border p-7 shadow-card ${plan.emphasis ? "border-primary/30 bg-primary/[0.03]" : "border-border bg-card"}`}
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <p className="text-caption text-muted-foreground">{plan.name}</p>
+              <h3 className="mt-2 text-3xl font-bold text-foreground">{plan.price}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{plan.blurb}</p>
+              <ul className="mt-5 space-y-2">
+                {plan.points.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm text-foreground">
+                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button variant={plan.emphasis ? "hero" : "outline"} className="mt-6 w-full">
+                {plan.cta}
+              </Button>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto max-w-7xl px-6 pb-28">
+        <motion.div
+          className="rounded-3xl border border-border bg-card p-8 md:p-12 shadow-elevated"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-display-sm text-foreground">Deploy with confidence</h2>
+              <p className="mt-3 text-body-lg text-muted-foreground">
+                Book a clinical + technical walkthrough with our team. We’ll map MediTriage to your ER workflow.
+              </p>
+              <div className="mt-6 space-y-3">
+                <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm text-foreground">
+                  <Lock className="h-4 w-4 text-primary" />
+                  SOC 2 controls and role-based access
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm text-foreground">
+                  <MessageSquareHeart className="h-4 w-4 text-primary" />
+                  Clinician-guided onboarding
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-border bg-background p-6">
+              <p className="text-sm font-semibold text-foreground mb-4">Request a hospital demo</p>
+              <div className="grid grid-cols-1 gap-3">
+                <input className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm" placeholder="Work email" />
+                <input className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm" placeholder="Hospital / system name" />
+                <textarea className="rounded-lg border border-border bg-card px-3 py-2.5 text-sm min-h-24" placeholder="Tell us about your ER volume and triage goals" />
+              </div>
+              <Button variant="hero" className="mt-4 w-full">Request Demo</Button>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
